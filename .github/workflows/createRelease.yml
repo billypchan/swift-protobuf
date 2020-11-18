@@ -27,6 +27,8 @@ jobs:
           bash <(curl --silent https://raw.githubusercontent.com/billypchan/iosGitHubTools/master/scripts/createCarthageFramwork.sh)
 
       - name: submit release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           bash <(curl --silent https://raw.githubusercontent.com/billypchan/iosGitHubTools/master/scripts/submitCarthageRelease.sh) apple/swift-protobuf
         
