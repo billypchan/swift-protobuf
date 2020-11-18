@@ -5,20 +5,19 @@ on:
 
 jobs:
   create-release:
-
     runs-on: macos-10.15
 
     steps:
-    - uses: actions/checkout@v2
-    - name: checkout
+      - name: checkout
+        uses: actions/checkout@v2
     
-    - name: update fork
-      run: |
-        bash <(curl --silent https://raw.githubusercontent.com/billypchan/iosGitHubTools/master/scripts/updateFork.sh) https://github.com/apple/swift-protobuf
+      - name: update fork
+        run: |
+          bash <(curl --silent https://raw.githubusercontent.com/billypchan/iosGitHubTools/master/scripts/updateFork.sh) https://github.com/apple/swift-protobuf
 
-    - name: check out release tag
-      run: |
-        bash <(curl --silent https://raw.githubusercontent.com/billypchan/iosGitHubTools/master/scripts/checkoutReleaseTag.sh) apple/swift-protobuf
+      - name: check out release tag
+        run: |
+          bash <(curl --silent https://raw.githubusercontent.com/billypchan/iosGitHubTools/master/scripts/checkoutReleaseTag.sh) apple/swift-protobuf
 
     - name: make framwwork
       env:
@@ -26,7 +25,7 @@ jobs:
       run: |
         bash <(curl --silent https://raw.githubusercontent.com/billypchan/iosGitHubTools/master/scripts/createCarthageFramwork.sh)
 
-    - name: submit release
-      run: |
-        bash <(curl --silent https://raw.githubusercontent.com/billypchan/iosGitHubTools/master/scripts/submitCarthageRelease.sh) apple/swift-protobuf
+      - name: submit release
+        run: |
+          bash <(curl --silent https://raw.githubusercontent.com/billypchan/iosGitHubTools/master/scripts/submitCarthageRelease.sh) apple/swift-protobuf
         
