@@ -4,16 +4,27 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  create-release:
 
     runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v2
     - name: checkout
+    
+    - name: update fork
       run: |
         bash <(curl --silent https://raw.githubusercontent.com/billypchan/iosGitHubTools/master/scripts/updateFork.sh) https://github.com/apple/swift-protobuf
+
+    - name: check out release tag
+      run: |
         bash <(curl --silent https://raw.githubusercontent.com/billypchan/iosGitHubTools/master/scripts/checkoutReleaseTag.sh) apple/swift-protobuf
+
+    - name: make framwwork
+      run: |
         bash <(curl --silent https://raw.githubusercontent.com/billypchan/iosGitHubTools/master/scripts/createCarthageFramwork.sh)
+
+    - name: submit release
+      run: |
         bash <(curl --silent https://raw.githubusercontent.com/billypchan/iosGitHubTools/master/scripts/submitCarthageRelease.sh) apple/swift-protobuf
         
