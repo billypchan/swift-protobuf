@@ -9,8 +9,8 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v2
     - name: checkout
+    - uses: actions/checkout@v2
     
     - name: update fork
       run: |
