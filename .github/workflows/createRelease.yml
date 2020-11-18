@@ -1,4 +1,4 @@
-name: Swift
+name: create release from upstream latest relase tag
 
 on:
   workflow_dispatch:
